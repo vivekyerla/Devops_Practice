@@ -1,0 +1,18 @@
+
+
+[root@ip-172-31-86-17 Devops_Practice]# history | grep git
+   16  yum install git -y	## install Git client
+   17  git init			## create local repo
+   21  git status		## get status of changes
+   22  git add linuxcommands.txt	## add files to changelist
+   23  git status	
+   24  git commit -m"my first commit"  	## commit changelist
+   25  git status
+   26  git remote add origin https://github.com/vivekyerla/Devops_Practice.git	## create link between local repo and remote repo
+   27  git push -u origin master	## push = check-in, pull = check-out
+   28  history | grep git
+[root@ip-172-31-86-17 Devops_Practice]#
+
+
+
+
