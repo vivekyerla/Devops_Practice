@@ -1,0 +1,21 @@
+[root@ip-172-31-86-17 Devops_Practice]# history
+    1  pwd
+    2  yum install tree -y
+    3  tree
+    4  which tree
+    5  rpm -qa tree
+    6  ls
+    7  ls -lrt
+    8* ssh-keygen -t rs
+    9  cat /root/.ssh/id_rsa.pub.
+   10  cat /root/.ssh/id_rsa.pub
+   11  cat /root/.ssh/id_rsa
+   12  ssh root@172.31.94.200
+   13  ssh 172.31.94.200
+   14  ssh root@172.31.94.200
+   15  mkdir -p /opt/Devops_Practice && cd /opt/Devops_Practice
+   16  yum install git -y
+   17  git init
+   18  history
+[root@ip-172-31-86-17 Devops_Practice]#
+
