@@ -1,0 +1,146 @@
+wifi: Ethans_Room1 / password: ethans@1
+
+Create Google classroom account (https://classroom.google.com/) 
+Create AWS amazon account (https://aws.amazon.com/)
+Create GitHub account (https://github.com/) 
+How to provision on AWS - https://www.bogotobogo.com/ 
+Share your documents here - http://collabedit.com/en8cy 
+WhatsApp group -  https://chat.whatsapp.com/IHaa3O7Ga5JI0IcjuwHsDE 
+install GitBash (Git Client) for windows machine (cygwin)
+install Tower or SourceTree for Mac machine
+
+
+DEVOPS INTRODUCTION
+
+What is DevOps 
+- Operations concept in development
+- Automation of most of the SDLC stages 
+
+Tools in DevOps
+- Configuration management tools - Ansible, Chef
+- CICD tools - Jenkins
+- Orchestration tools - CloudFormation, Terraform
+- Containers - Docker, Kubernetes
+- Scripting language - Python
+- Monitoring tools - Nacho
+- Widgets - SonarQube, Nexus
+- Source Code Management tool - GitHub (GitHub is server, GitBash is client)
+
+Why demand for DevOps
+- Reduce overall cost 
+- Increase efficiency
+- Example: A Generic problem statement could be - Scale Peta-bytes of data at all levels in a Big Data project
+	- You need skilled DevOps engineer to handle such problem
+
+Note:
+- Sir will upload our daily work on Google Classroom 
+- We will upload our daily work on GitHub for backup
+
+==================================================================================
+
+DIFFERENT CLOUD SERVICE OFFERINGS
+
+AWS-Demo PPT slide no. 5
+
+Different layers of a shippable software product:
+- Hardware
+- Storage
+- Networking
+- Virtualization
+- Operating System
+- Runtime Environment
+- Actual Application
+- Functions of Applications that can be executed on Command Line / Rest API / GUI / Programming Language. This is what is used in Micro Services.
+
+Different Cloud Service Models:
+- On Premise
+- IaaS
+- Paas
+- FaaS
+- SaaS
+
+IaaS activities: (Ansible, Chef)
+- provisioning
+- configuration management
+- deployment
+- monitoring
+- security
+
+PaaS .. you get readymade Docker image with all pre-requisite libraries pre-installed  .. could be JVM image 
+- ECS (Elastic Container Service)
+- EBS (Elastic Beanstalk) ... EBS for Elastic Block Storage (hard disk of EC2 instance) is different
+- EKS (Elastic Container Service for Kubernetes)
+
+PaaS vs. FaaS:
+- In PaaS, You need to write code, create container and deploy container and create rest API end point
+- In FaaS, You need to write code, and create rest API end point. Containerization will be managed by cloud. Just focus on code and function.
+
+SaaS
+- In SaaS, you use software as a service and pay for what you use. You do not deal with code etc.
+
+For any problem statement, 
+- You first identify, what is the type of your application is - On-Premise / IaaS / PaaS / FaaS / SaaS
+- What are the concerns/requirements of customer
+- Provide different possible solutions with approx. costing
+
+==================================================================================
+
+AWS 10000 FEET OVERVIEW
+
+AWS infrastructure (Hardware layer of slide 5) is divided in 3 parts:
+- Region
+- Availability Locations (data center)
+- Edge locations
+- slide 6
+
+CloudFront (CF)
+- Amazon's content delivery network (CDN)
+- slide 7
+
+VPC
+- application server, db server in private network - one layer
+- web server, load balancers in public network - another layer
+
+Route53 
+- domain name to IP address or IP address to domain name resolution
+- can be used for public IP or internal IP resolution
+
+Compute:
+- In IaaS, you need EC2 instance (EC2 = Elastic Cloud Compute)
+- In PaaS, you need ECS Docker Containers (ECS = Elastic Container Service), EBS (EBS = Elastic Beanstalk)
+- In FaaS, you need Lambda function (server-less, event driven program)
+
+ECS vs. EBS:
+- Docker is another company .. ECS allows to integrate(deploy) your docker images with AWS 
+- EBS (Elastic Beanstalk) is Amazon's Docker ... ECS is more popular than EBS
+- EBS also stands for Elastic Block Storage which is hard disk of an EC2 instance 
+
+S3 (Simple Storage Service)
+- Use bucket for storing all files needed for application (csv, json etc.)
+
+Storage Gateway 
+- helps to uploads your files from organization to AWS cloud
+
+EFS (Elastic File System)
+- Shared File system mounted on your Linux machine
+- EFS is native ... S3 is online
+
+Note:
+- Co-relate your daily assignments to these AWS services
+- Go through YouTube video - How to create Linux EC2 and SSH to it
+- Next class, we will see Basic Linux commands
+- Bogo to bogo - Read Linux material ... Devops interview starts with Linux
+
+Interview stages
+- Linux
+- Configuration Management  Ansible, CICD
+- Scripting / Java
+- Cloud - AWS, Docker, Kubernetes
+- MicroServices
+
+==================================================================================
+
+
+
+
+

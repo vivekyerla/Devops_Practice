@@ -1,0 +1,217 @@
+AWS 10000 FEET OVERVIEW continued.
+
+Snowball 
+- Transfer data from your hard disk to your AWS account online (not in S3, in Amazon data center)
+
+DMS 
+- DB migration service
+- Your DB is on-prem ... You want to upload data on to the cloud ... You use DMS
+
+SMS
+- Server migration service
+- EC2 Server data migrate to DB server ... You use SMS
+
+RDS
+- 
+DynamoDB 
+- lightweight DB ... Server-less
+- NoSQL is schema-less
+- Lambda and DynamoDB go hand-in-hand
+
+ElastiCache DB
+- 2 types of ElastiCache - Redis and Memcached
+- Used for online caching ... Cache layer
+- Online Dictionary or Online Hashmap
+- Data saved in form of python dictionary (key, value)
+- Not OLTP / OLAP
+
+Redshift 
+- Data warehousing tool of AWS
+- Data Lake = Data is received from all streams of data
+- It has fact and dimension tables
+- Failed service ... People mostly use other third party Data warehousing tools and integrate with AWS
+
+CloudWatch (CW)
+- Used for Application monitoring, Resource (CPU, RAM etc) monitoring and Log monitoring and Notifications/Alerts
+
+CloudFormation (CFN)
+- use CFT (Cloud formation template) to deploy entire stack (EC2, VPC, RDS or any AWS resources) in idempotent (auto-handle) way
+- mainly used for IaaS / PaaS
+
+CloudTrail (CT)
+- Used for Audit Trail 
+- Example: How many EC2 created by person A etc.. When ,.. Did it save cost etc.
+
+OpsWorks 
+- AWS's own Ansible / Chef
+
+Config 
+- Used for Stack level configuration
+
+Service Catalog 
+- Used for Organization level configuration
+
+IAM 
+- User Access Control (Imp Service)
+- Used for managing ACLs (Access Control Lists)
+
+Inspector 
+- Vulnerability scanning of AWS resources
+
+Certificate Manager 
+- You can use AWS's pre-signed certificates
+- You can create your own Certificate which will be managed by AWS
+
+DS 
+- Directory Service to manage Microsoft Active Directory 
+- Microsoft Active Directory is different from LDAP ... LDAP is a standard, AD is Microsoft's (proprietary) implementation
+
+Code Commit 
+- Equivalent to Git Source
+
+Code Pipeline 
+- Equivalent to Jenkins
+
+SageMaker
+- Machine learning service renamed to SageMaker
+
+Operation of machine learning
+- Get the data from various data streams
+- Process the data using some ML algorithm
+- Host it on cloud
+
+Note:
+- Cloud and ML go hand-in-hand for scaling
+- Managing infrastructure (Scaling up and Scaling Down) is a complex problem in Big data projects
+- Skilled DevOps engineers will be in demand to handle this problem
+- People generally use hybrid cloud model (half resources on premise + half resources on cloud)
+
+==================================================================================
+
+CREATE EC2 INSTANCE AND PROVIDE INIT SCRIPT TO THE INSTANCE
+
+Hands-On Assignment:
+- Create EC2 server and provide init script to it
+- In init script, we will install Apache and PHP, so that when EC2 instance is booted, you will have apache and PHP already running for you
+
+NOTES while creating EC2 instance:
+- use m4xlarge if you are going to use EC2 for Data warehousing 
+- Basic thumb rule - 1 subnet for 1 AZ
+
+In VPC, you have 2 gateways:
+- 1 NAT GW - responsible for converting private IP to public IP (NAT = Network Address Translation)
+- 1 IGW - You will get public IP only if you have IGW (IGW = Internet Gateway)
+
+In VPC (subnets + IGW) you have 
+- routing table
+- subnets
+- CIDR (Classless Inter-Domain Routing)
+- routing rules
+
+Placement Groups 
+- Used when we create multiple VMs
+- Place VMs in same hypervisor slot to improve performance 
+
+IAM Role 
+- I want to access S3 bucket / RDS from EC2 instance through an application
+- For this, You create an IAM role ... One role can have multiple permissions
+
+Monitoring your EC2 instance:
+- BASIC monitoring is free and enabled by default 
+- DETAILED monitoring is chargeable and disabled by default
+
+Code used as start up (init) script while creating EC2 instance
+-	#!/bin/sh
+-	curl -L https://us-west-2-aws-training.s3.amazonaws.com/awsu-spl/spl03-working-elb/static/bootstrap-elb.sh|sh
+
+Note: 
+- A shell script is publicly hosted at https://us-west-2-aws-training.s3.amazonaws.com/awsu-spl/spl03-working-elb/static/bootstrap-elb.sh (by Mahesh sir)
+- We are just executing this script using curl command
+- yum install httpd ... will install Apache
+- yum install php ... will install PHP
+- yum -y install httpd php ... will install both
+
+
+yum
+- yum is package manager ... installs one or more RPMs (i.e., single rpm and all its dependencies)
+- RPM = Redhat Package Manager
+- Windows exe ~ Linux rpm
+- Windows msi ~ Linux yum
+
+
+Security Group (SG)
+- Host based firewall or Instance based firewall or Server based firewall
+- works on White-listing approach 
+- has inbound and outbound rules
+- 1 SG can be attached to multiple EC2 instances
+
+PEM file and PPK file:
+- .pem is permission file 
+- .ppk is private key file
+- PuTTYgen is Putty Generator = used to convert .pem file to .ppk file
+- pem file = permission file (pem file is not understood by PuTTY .. use PuTTYgen to convert pem file to ppk file)
+- ppk file = private key file (PuTTY recognizes only ppk file and not pem file)
+- Until you create user on linux vm .. your pem file is very imp .. if its misplaced .. you will not be able to ssh to linux vm
+- download PuTTY and PuTTYgen from https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html
+- GitBash and Mac users can directly ssh .. no need of PuTTY or PuTTYgen
+
+3 types of authentication:
+- private key authentication
+- public key authentication
+- username password authentication
+
+PuTTYgen Step:
+- In PuTTYgen, we save our pem file as private key .. since we are doing private key authentication
+
+Use below commands for mac machine: ... (No need to convert .pem to .ppk)
+- cd /var/opt .. you can see "aws_demo.pem" file
+- chmod 400 aws_demo.pem
+- ssh -i "aws_demo.pem" ec2-user@ec2-3-83-216-9.compute-1.amazonaws.com
+	- ec2-3-83-216-9.compute-1.amazonaws.com is the hostname .. You can use IP address also
+
+PuTTY Step:
+- Login to EC2 instance using its public IP and as "ec2-user" ... ec2-user@3.83.216.9
+- Browse the .ppk file under Connection -> SSH -> Auth
+
+
+[ec2-user@ip-172-31-92-88 ~]	# here private IP displayed
+[ec2-user@ip-172-31-92-88 ~]$ sudo su -			# switch to root user
+[root@ip-172-31-92-88 ~]#
+
+[root@ip-172-31-92-88 ~]# cd /var/log
+[root@ip-172-31-92-88 log]#
+[root@ip-172-31-92-88 log]# ls -ltr | grep -i cloud
+-rw-r--r--  1 root   root             23060 Feb 17 05:21 cloud-init-output.log
+-rw-r--r--  1 root   root             92931 Feb 17 05:21 cloud-init.log
+[root@ip-172-31-92-88 log]#
+
+[root@ip-172-31-92-88 log]# less  cloud-init-output.log
+[root@ip-172-31-92-88 log]#
+[root@ip-172-31-92-88 log]# less  cloud-init.log
+[root@ip-172-31-92-88 log]# 
+
+[root@ip-172-31-92-88 log]# service httpd status	# Apache is installed as a service 
+[root@ip-172-31-92-88 log]# 
+[root@ip-172-31-92-88 log]# service php status	# PHP is not installed as a service 
+Redirecting to /bin/systemctl status php.service
+Unit php.service could not be found.
+[root@ip-172-31-92-88 log]#
+
+[root@ip-172-31-92-88 log]# which httpd
+/usr/sbin/httpd
+[root@ip-172-31-92-88 log]#
+[root@ip-172-31-92-88 log]# which php
+/usr/bin/php
+[root@ip-172-31-92-88 log]#
+[root@ip-172-31-92-88 log]#
+
+
+Note:
+- If you put anything in user data (init script) .. then only "cloud-init-output.log" will be present
+- https://stackoverflow.com/questions/15904095/how-to-check-whether-my-user-data-passing-to-ec2-instance-working-or-not
+
+==================================================================================
+
+
+
+

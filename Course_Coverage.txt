@@ -1,0 +1,41 @@
+
+16 FEB 2019
+	- DEVOPS INTRODUCTION
+		- What is DevOps
+		- Tools in DevOps
+		- Why demand for DevOps
+	
+	- DIFFERENT CLOUD SERVICE OFFERINGS
+		- Different layers of a shippable software product (Hardware, Storage, Networking, Virtualization, Operating System, Runtime,  Application, Functions)
+		- Different Cloud Service Models (On-Premise, IaaS, PaaS, FaaS, SaaS)
+	
+	- AWS 10000 FEET OVERVIEW 
+
+17 FEB 2019
+	- AWS 10000 FEET OVERVIEW continued
+	- CREATE EC2 INSTANCE AND PROVIDE INIT SCRIPT TO THE INSTANCE
+
+23 Feb 2019
+	- HOLIDAY
+
+24 Feb 2019
+	- SSH FROM LINUX MACHINE 1 TO LINUX MACHINE 2 IN PASSWORD-LESS WAY ... (i.e., USING PUBLIC KEY AUTHENTICATION)
+	- BASIC LINUX COMMANDS
+	- GIT COMMANDS
+
+02 Mar 2019
+	- SHELL SCRIPTING CONCEPTS
+		- environment variable
+		- export
+		- source
+		- .bashrc vs .bash_profile
+		- /home directory
+		- /bin/bash
+		
+	- HOW TO WRITE FUNCTIONS IN SHELL SCRIPT
+		- How to call a function ... bash function_demo.sh
+		- How to pass arguments to a function ... bash argument_passing.sh
+		- How to pass command line arguments to shell script ... bash bash_args.sh Ubuntu
+		
+		
+
