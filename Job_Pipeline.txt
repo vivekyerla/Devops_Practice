@@ -1,0 +1,19 @@
+node("10.90.1.11") {
+    
+
+    stage('Perforce Checkout')
+    {
+        echo 'Geting Scripts from Perforce'
+        checkout perforce(credential: 'c5222849-624b-4a36-b4bb-45ab1c70a6df', populate: autoClean(delete: true, modtime: false, parallel: [enable: false, minbytes: '1024', minfiles: '1', threads: '4'], pin: '', quiet: true, replace: true, tidy: false), workspace: manualSpec(charset: 'none', name: '${JOB_NAME}', pinHost: false, spec: clientSpec(allwrite: true, backup: false, clobber: false, compress: false, line: 'LOCAL', locked: false, modtime: false, rmdir: false, serverID: '', streamName: '', type: 'WRITABLE', view: '''
+//LabQA/EmpirixDevOpsTestFrameWork-62-111_Stabilization/... //${JOB_NAME}/...
+//LabQA/EmpirixDevOpsTestFrameWork-62-111_Stabilization/QA_Lab_Hosts_EXMS_DevOps.py //${JOB_NAME}/QA_Lab_Hosts_EXMS.py''')))
+    }
+    withEnv(['CONNECTION_STRING=admin/Hmr_Admin@vm-nwv1.qa.empirix.com']) {
+        stage("Mount PCAP repository"){
+            bat 'nosetests -v Tests_E_XMS/BVT_Smoke_Tests_Using_Rest_APIs/Mount_PCAP_Repo.py '
+        }
+        stage('Executing Test cases'){
+            bat 'nosetests -v --with-html  --html-file=SS_NS_PS_Test_Report.html  Tests_E_XMS/BVT_Smoke_Tests_Using_Rest_APIs/Network_Search_Filters_Tests_SIP.py  Tests_E_XMS/BVT_Smoke_Tests_Using_Rest_APIs/Network_Search_Filters_Tests_GnGp.py  Tests_E_XMS/BVT_Smoke_Tests_Using_Rest_APIs/Protocol_Search_Tests.py  Tests_E_XMS/BVT_Smoke_Tests_Using_Rest_APIs/Subscriber_Search_Tests_Voice.py  Tests_E_XMS/BVT_Smoke_Tests_Using_Rest_APIs/Subscriber_Search_Tests_Data.py'        
+        }
+    }
+}
