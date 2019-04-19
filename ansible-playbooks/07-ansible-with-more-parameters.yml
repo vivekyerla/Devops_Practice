@@ -1,0 +1,14 @@
+---
+- hosts: server
+  gather_facts: yes
+
+  vars_prompt:
+    - name: pack_name
+      prompt: Enter the Package Name
+      default: telnet
+      private: no
+  
+  tasks:
+    - name: Install {{ pack_name }}
+      yum: pkg={{ pack_name }} state=installed
+      become: true

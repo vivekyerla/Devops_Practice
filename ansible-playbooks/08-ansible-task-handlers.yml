@@ -1,0 +1,20 @@
+---
+- hosts: server
+  gather_facts: yes
+  #sudo: true
+  become: true
+
+  vars:
+    package_name: httpd
+
+  tasks:
+    - name:   installing {{package_name }}
+      yum:    pkg={{ package_name }} state=installed
+      notify: Restart HTTPD
+      #become: true
+
+  handlers: 
+    - name:    Restart HTTPD
+      action:  service name=httpd state=restarted
+      #become:  true
+

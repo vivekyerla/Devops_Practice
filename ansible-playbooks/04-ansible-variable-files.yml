@@ -1,0 +1,20 @@
+---
+- hosts: server
+  gather_facts: yes
+
+  vars:
+    package_name: httpd
+    #service_name: httpd
+
+  vars_files:
+    - web_vars.yml
+  
+  tasks:
+    - name:   installing {{package_name }}
+      yum:    pkg={{ package_name }} state=installed
+      become: true
+
+    - name:     start {{ service_name }} service
+      service:  name={{ service_name }} state=started
+      become:   true
+

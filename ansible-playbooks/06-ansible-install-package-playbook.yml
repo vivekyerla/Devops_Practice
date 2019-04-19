@@ -1,0 +1,15 @@
+---
+- hosts: server
+  gather_facts: yes
+
+  vars_prompt:
+    - name: package_name
+      prompt: Enter the package name
+
+  tasks:
+    - name:   installing {{package_name }}
+      yum:    pkg={{ package_name }} state=installed
+      become: true
+
+
+

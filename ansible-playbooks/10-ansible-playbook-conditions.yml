@@ -1,0 +1,20 @@
+---
+- hosts: server  #group name from the inventory
+  #user: ec2-user Server Auth
+  #sudo: true
+  become: true
+   
+  tasks:
+    - name: Install httpd redhat
+      yum: name=httpd state=installed
+      when: ansible_distribution == "RedHat"
+    - name: Install httpd ubuntu
+      apt: name=apache2 state=installed
+      when: ansible_distribution == "Ubuntu"
+      
+    - name: Start httpd
+      service: name=httpd state=started
+      when: ansible_distribution == "RedHat"
+    - name: Start httpd
+      service: name=apache2 state=started
+      when: ansible_distribution == "Ubuntu"
